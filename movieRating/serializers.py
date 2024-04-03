@@ -13,7 +13,7 @@ class GetMovieSerializer(serializers.ModelSerializer):
     total_rating = serializers.SerializerMethodField()
 
     def get_avg_rating(self,movie:Movie):
-        return Rating.objects.filter(movie_id=movie.id).aggregate(Avg('rating', default=0))
+        return Rating.objects.filter(movie_id=movie.id).aggregate(Avg('rating', default=0))["rating__avg"]
 
     def get_total_rating(self,movie:Movie):
         return Rating.objects.filter(movie_id=movie.id).count()

@@ -128,6 +128,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:8080",
     "http://127.0.0.1:9000",
     "http://localhost:5173",
+    "https://movie-rating-djreact.netlify.app/",
 ]
 
 CORS_ALLOW_ALL_ORIGINS = True
