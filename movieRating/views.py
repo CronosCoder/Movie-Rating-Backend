@@ -1,7 +1,19 @@
 from rest_framework.response import Response
+from rest_framework.viewsets import ModelViewSet
 from rest_framework.decorators import api_view
+from .models import Movie,Rating
+from .serializers import MovieSerializer,RatingSerializer,GetMovieSerializer
 
-# Create your views here.
-@api_view(['GET', 'POST'])
-def testView(request):
-    return Response('ok')
+
+class MovieView(ModelViewSet):
+    queryset = Movie.objects.all()
+    serializer_class = MovieSerializer 
+
+    def get_serializer_class(self):
+        if self.request.method == 'GET':
+            return GetMovieSerializer
+        return MovieSerializer
+
+class RatingView(ModelViewSet):
+    queryset = Rating.objects.all()
+    serializer_class = RatingSerializer
