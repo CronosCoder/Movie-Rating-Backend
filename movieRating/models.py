@@ -18,7 +18,7 @@ class Movie(models.Model):
 class Rating(models.Model):
     user_id = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,related_name='user')
     movie_id = models.ForeignKey(Movie,on_delete=models.CASCADE,related_name='movie')
-    rating = models.FloatField(validators=[MinValueValidator(1,message="Rating should be start with 1"),MinValueValidator(5,message="Rating should not greater than 5")])
+    rating = models.FloatField(validators=[MinValueValidator(1,message="Rating should be start with 1"),MaxValueValidator(5,message="Rating should not greater than 5")])
 
     class Meta:
         ordering = ['movie_id']
